@@ -1,6 +1,7 @@
-import Hero from "@/components/Hero";
 import HeroSection from "@/components/HeroSection";
+import SectionFour from "@/components/SectionFour";
 import SectionOne from "@/components/SectionOne";
+import SectionThree from "@/components/SectionThree";
 import SectionTwo from "@/components/SectionTwo";
 
 const page = () => {
@@ -9,6 +10,8 @@ const page = () => {
       <HeroSection/>
       <SectionOne/>
       <SectionTwo/>
+      <SectionThree/>
+      <SectionFour/>
     </main>
   );
 };

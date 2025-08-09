@@ -20,16 +20,12 @@ const Navbar = () => {
             ))}
         </div>
         <div className="flex items-center space-x-10 md:space-x-4">
-            <button>
             <Link href="/login" className="text-[#8987A1] hover:text-[#252432] md:text-base text-sm">
                 Sign In
             </Link>
-            </button>
-            <button>
             <Link href="/signup" className="text-white md:px-10 px-8 md:py-3.5 py-2 rounded-xl bg-[#4E47FF] md:text-base text-sm">
                 Sign Up
             </Link>
-            </button>
         </div>
     </nav>
   )
