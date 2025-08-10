@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import logo from "../public/assets/Logo.png";
 import social1 from "../public/assets/social1.png";
@@ -6,6 +7,8 @@ import social3 from "../public/assets/social3.png";
 import social4 from "../public/assets/social4.png";
 import heart from "../public/assets/heart.png";
 import Link from "next/link";
+import { saveCustomer } from "@/actions/customer";
+import { useActionState } from "react";
 
 const Links = [
   { name: "Home", link: "/" },
@@ -15,10 +18,10 @@ const Links = [
 ];
 
 const SectionFour = () => {
-  const handleSubmit = async (e) => {
-    "use server";
-    e.preventDefault();
-  };
+  const [state, formAction, isPending] = useActionState(saveCustomer, {
+    success: false,
+    message: null,
+  });
   return (
     <section
       id="section4"
@@ -29,7 +32,7 @@ const SectionFour = () => {
     bg-[length:200px,_80px,_cover]
     bg-no-repeat"
     >
-      <form action={handleSubmit} className="md:w-xl w-sm">
+      <form action={formAction} className="md:w-xl w-sm">
         <h2 className="md:text-5xl text-3xl font-bold text-center text-[#252432] md:mb-16 mb-5">
           Let’s Get in Touch
         </h2>
@@ -83,11 +86,23 @@ const SectionFour = () => {
             />
           </div>
           <button
+            className="w-full bg-[#4E47FF] cursor-pointer text-white font-bold text-xl p-2 rounded-md hover:bg-[#4E47FF]/90"
             type="submit"
-            className="w-full bg-[#4E47FF] text-white font-bold text-xl p-2 rounded-md hover:bg-[#4E47FF]/90"
+            disabled={isPending}
           >
-            Get in Touch
+            {isPending ? "Submitting..." : "Get in Touch"}
           </button>
+          {state.message && (
+            <div
+              className={`p-4 rounded-md ${
+                state.success
+                  ? "bg-green-100 text-green-700"
+                  : "bg-red-100 text-red-700"
+              }`}
+            >
+              <p>{state.message}</p>
+            </div>
+          )}
         </div>
       </form>
       <div className="bg-white rounded-2xl mt-20 shadow-2xl p-10 mx-5 md:mx-0 md:my-20 my-10">

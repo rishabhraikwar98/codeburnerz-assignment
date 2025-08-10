@@ -14,7 +14,7 @@ const SectionTwo = () => {
     md:bg-[length:800px]
     bg-[length:500px]
     ">
-      <div className="md:relative">
+      <div className="md:relative none">
         <Image
           src={arrowleft}
           alt="arrow"
